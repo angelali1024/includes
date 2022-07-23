@@ -1,0 +1,248 @@
+metadata:
+  name: ego_left_turn_into_traffic_hello_from_remote!!!:(
+  scenario_version: v0.96
+include:
+- file: include/global_observers.inc.yaml
+- file: include/vehicle_shape.inc.yaml
+sim_end:
+  until:
+  - timeout: {secs: 10s}
+map:
+  key: sunnyvale
+projection_settings:
+  utm:
+    north: true
+    zone: 10
+trip_agent:
+  behavior:
+  - generate_route:
+      dest:
+        utm:
+          y: 4140821.4494080385
+          x: 586250.7662575213
+      start:
+        utm:
+          y: 4140994.4106418253
+          x: 586181.0034697123
+agents:
+- ego:
+    initial_position:
+      point:
+        utm:
+          y: 4140994.4106418253
+          x: 586181.0034697123
+      heading: -1.7398485500404306
+    initial_velocity_mps: 7
+    behaviors:
+    - path_following:
+        constant_velocity:
+        pose_b_spline:
+          default_tangent_distance: 3
+          poses:
+          - y: 4140979.686470868
+            x: 586177.9724381308
+            heading: -1.7866453149932182
+            tangent_distance: 4.024146748252584
+          - y: 4140953.8296857006
+            x: 586172.5402195147
+            heading: -1.8697023030061486
+            tangent_distance: 4.429508895193742
+          - y: 4140936.1026168987
+            x: 586168.6814595149
+            heading: -1.8191228745792538
+            tangent_distance: 4.489591626342418
+          - y: 4140920.129093479
+            x: 586164.6877678131
+            heading: -1.696132950185739
+            tangent_distance: 3.4804042101256587
+          - y: 4140906.6842899616
+            x: 586164.5509006346
+            heading: -1.901584939014295
+            tangent_distance: 3.134851786888679
+          - y: 4140884.706870106
+            x: 586159.1180829953
+            heading: -1.850091371177612
+            tangent_distance: 4.402574408432618
+          - y: 4140871.7945494126
+            x: 586155.8426321821
+            heading: -1.6293645290946095
+            tangent_distance: 3.9319297811943152
+          - y: 4140860.5211337972
+            x: 586156.056172834
+            heading: -1.3052322061291035
+            tangent_distance: 3.2215701770344647
+          - y: 4140848.548758595
+            x: 586161.1896999226
+            heading: -0.8812593191256626
+            tangent_distance: 4.292777159923051
+          - y: 4140841.578643505
+            x: 586172.468478271
+            heading: -0.3841077512702803
+            tangent_distance: 2.656537357720606
+          - y: 4140836.6329813586
+            x: 586191.5092109253
+            heading: -0.5066112678735986
+            tangent_distance: 3.918674204792315
+          - y: 4140830.774968622
+            x: 586199.9155421095
+            heading: -0.2730318251926827
+            tangent_distance: 4.2718922286979915
+          - y: 4140826.118895665
+            x: 586217.9417076565
+            heading: 0
+          - y: 4140825.805054556
+            x: 586233.8829616066
+            heading: 0
+            tangent_distance: 3.520985879234544
+          - y: 4140822.4064508392
+            x: 586247.0629918363
+            heading: -0.3417810442664671
+            tangent_distance: 2.9960346509243605
+- obstacle:
+    behaviors:
+    - lane_following:
+        waypoints:
+        - adaptive_cruise:
+            max_decel: 3
+            min_dist: 5
+            desired_speed: 4
+            max_accel: 1
+            desired_time_gap: 5s
+          point:
+            utm:
+              y: 4140932.2781682448
+              x: 586170.9971758291
+        - adaptive_cruise:
+            max_decel: 3
+            min_dist: 5
+            desired_speed: 5
+            max_accel: 1
+            desired_time_gap: 5s
+          point:
+            utm:
+              y: 4140879.5012066853
+              x: 586157.7639994634
+        - adaptive_cruise:
+            max_decel: 3
+            min_dist: 5
+            desired_speed: 5
+            max_accel: 1
+            desired_time_gap: 5s
+          point:
+            utm:
+              y: 4140831.0975009054
+              x: 586213.1689070462
+        - adaptive_cruise:
+            max_decel: 3
+            min_dist: 5
+            desired_speed: 5
+            max_accel: 1
+            desired_time_gap: 5s
+          point:
+            utm:
+              y: 4140818.0663501266
+              x: 586264.1824096683
+    model:
+      static:
+        point:
+        - y: 0.9
+          x: 2.3
+        - y: -0.9
+          x: 2.3
+        - y: -0.9
+          x: -2.3
+        - y: 0.9
+          x: -2.3
+        height: 1.5
+    initial_state:
+      point:
+        utm:
+          y: 4140974.3412381643
+          x: 586176.8555877084
+      speed_mps: 7
+      heading: -1.7827906641942521
+    type: VEHICLE
+    id: 1
+- obstacle:
+    behaviors:
+    - lane_following:
+        waypoints:
+        - adaptive_cruise:
+            max_decel: 3
+            min_dist: 5
+            desired_speed: 5
+            max_accel: 1
+            desired_time_gap: 5s
+          point:
+            utm:
+              y: 4140762.3659090647
+              x: 586124.5807589885
+        - adaptive_cruise:
+            max_decel: 3
+            min_dist: 5
+            desired_speed: 5
+            max_accel: 1
+            desired_time_gap: 5s
+          point:
+            utm:
+              y: 4140746.5495053777
+              x: 586120.5119273345
+    model:
+      static:
+        point:
+        - y: 1.3
+          x: 10.5
+        - y: -1.3
+          x: 10.5
+        - y: -1.3
+          x: -10.5
+        - y: 1.3
+          x: -10.5
+        height: 4.1
+    initial_state:
+      point:
+        utm:
+          y: 4141027.2056574817
+          x: 586184.5691429899
+      speed_mps: 6.5
+      heading: -1.78232891706398
+    type: TRUCK
+    id: 2
+- traffic:
+    name: bicycle_traffic
+    initial_time_gap: 1s
+    initial_min_distance_gap_m: 10
+    randomize:
+      actor_order: true
+      seed: 1
+      initial_gap: {std_dev: 5.0}
+    max_actors: 100
+    actors:
+    - behaviors:
+      - lane_following:
+          waypoints:
+          - point:
+              utm:
+                y: 4140960.3015758763
+                x: 586188.4233300032
+      model:
+        static:
+          point:
+          - y: 0.35
+            x: 1.5
+          - y: -0.35
+            x: 1.5
+          - y: -0.35
+            x: -1.5
+          - y: 0.35
+            x: -1.5
+          height: 1.5
+      initial_state:
+        point:
+          utm:
+            y: 4140837.781089369
+            x: 586217.6584813463
+        speed_mps: 4
+        heading: 2.890243395137464
+      type: BICYCLE
+      id: 3
