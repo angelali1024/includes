@@ -1,5 +1,5 @@
 observers:
-  - name: "Min Vehicle Distance"
+  - name: "Min Vehicle Distance asdkajslkdajd"
     always:
         distance:
           obstacle_a: { type : VEHICLE }
