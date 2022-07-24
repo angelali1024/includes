@@ -1,0 +1,28 @@
+observers:
+- name: Min Vehicle Distance local
+  always:
+    distance:
+      obstacle_a: {type: VEHICLE}
+      obstacle_b: {ego: true}
+      fail_if_below_m: 0
+- name: Max Acceleration
+  always:
+    motion:
+        # Add maximum acceleration here
+      fail_if_accel_above_mps2: 4.0
+- name: Min Velocity
+  always:
+    motion:
+        # Add minimum velocity here
+      fail_if_vel_below_mps: 8
+- name: Max Velocity
+  always:
+    motion:
+        # Add maximum velocity here
+      fail_if_vel_above_mps: 25
+- name: Max Deceleration
+  always:
+    motion:
+        # Add maximum deceleration here
+      fail_if_decel_above_mps2: 4
+
