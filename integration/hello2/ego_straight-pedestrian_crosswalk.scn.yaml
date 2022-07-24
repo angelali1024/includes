@@ -1,0 +1,104 @@
+include:
+- file: include/vehicle_shape.inc.yaml
+metadata:
+  name: Pedestrian crossing Crosswalk
+  scenario_version: v0.96
+  tags:
+  - sunnyvale
+sim_end:
+  until:
+  - timeout: {secs: 15s}
+map:
+  key: sunnyvale
+projection_settings:
+  utm:
+    north: true
+    zone: 10
+trip_agent:
+  behavior:
+  - generate_route:
+      dest: {utm: {y: 4140927.054578097, x: 587195.1580812414}}
+      start: {utm: {y: 4140899.9701116034, x: 587295.6346383499}}
+agents:
+- ego:
+    initial_velocity_mps: 2.5
+    initial_position:
+      point: {utm: {y: 4140899.9701116034, x: 587295.6346383499}}
+      heading: 2.811302499973823
+    behaviors:
+    - path_following:
+        constant_velocity:
+        pose_b_spline:
+          default_tangent_distance: 3
+          poses:
+          - y: 4140903.138492706
+            x: 587284.7730939912
+            heading: 2.7668792963575175
+            tangent_distance: 1.9731923304980434
+          - y: 4140905.80822719
+            x: 587278.6434858026
+            heading: 2.768806542909843
+            tangent_distance: 4.161088299635155
+          - y: 4140909.6403051247
+            x: 587264.5466953232
+            heading: 2.653299631832974
+            tangent_distance: 4.389917706734865
+          - y: 4140912.8006372307
+            x: 587252.2595819933
+            heading: 3.0679521126682117
+            tangent_distance: 3.8471716944759757
+- obstacle:
+    model:
+      static:
+        height: 1.65
+        point:
+        - {x: 0, y: 0.35}
+        - {x: 0.2, y: 0.25}
+        - {x: 0.2, y: -0.25}
+        - {x: 0, y: -0.35}
+        - {x: -0.2, y: -0.25}
+        - {x: -0.2, y: 0.25}
+    type: PEDESTRIAN
+    id: 1
+    initial_state:
+      point:
+        utm:
+          y: 4140915.7966969465
+          x: 587276.2799357538
+      speed_mps: 1.5
+      heading: -1.8533512792604698
+    behaviors:
+    - waypoint_following:
+        relative_waypoints:
+        - point:
+            utm:
+              y: 4140896.424549557
+              x: 587271.3646147744
+        - point:
+            utm:
+              y: 4140881.678586619
+              x: 587267.7504081719
+observers:
+- name: Min Pedestrian Distance
+  always:
+    distance:
+      obstacle_a: {type: PEDESTRIAN}
+      obstacle_b: {ego: true}
+      fail_if_below_m: 0
+- name: Max Velocity
+  always:
+    motion:
+        # Add maximum velocity here
+      fail_if_vel_above_mps: 10
+- name: Max Jerk
+  always:
+    motion:
+        # Add maximum jerk here
+      fail_if_jerk_above_mps3: 20
+- name: Max Deceleration
+  always:
+    motion:
+        # Add maximum deceleration here
+      fail_if_decel_above_mps2: 3
+extra_data:
+  use_ego_behavior: true
